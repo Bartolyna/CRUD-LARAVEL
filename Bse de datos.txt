@@ -1,0 +1,49 @@
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL auto_increment,
+  `nombre` varchar(25) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+CREATE TABLE `Areas` (
+  `id` int(11) NOT NULL auto_increment,
+  `nombre` varchar(25) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+
+CREATE TABLE `Empleado` (
+  `id` int(11) NOT NULL auto_increment,
+  `nombre` varchar(25) NOT NULL,
+  `sexo` varchar(25) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `area_id` int(11) NOT NULL,
+  `boletin` int(11) NOT NULL,
+  `descripcion` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+CREATE TABLE `Empleado_Rol` (
+  `Empleado_id` int(11) NOT NULL ,
+  `Rol_id` varchar(25) NOT NULL
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
+
+ALTER TABLE Empleado_Rol
+    ADD CONSTRAINT fk_Empleado
+    FOREIGN KEY (Empleado_id)
+    REFERENCES Empleado(id);
+
+ALTER TABLE Empleado_Rol
+    ADD CONSTRAINT fk_EmpleadoRoles
+    FOREIGN KEY (Rol_id)
+    REFERENCES roles(id);
+
+ALTER TABLE Empleado
+    ADD CONSTRAINT fk_EmpleadoArea
+    FOREIGN KEY (area_id)
+    REFERENCES Areas(id);
+
+
+INSERT INTO `areas`(`id`, `nombre`) VALUES ('1','Administracion');
+INSERT INTO `areas`(`id`, `nombre`) VALUES ('2','Administracion');
+INSERT INTO `areas`(`id`, `nombre`) VALUES ('3','Calidad');
+INSERT INTO `areas`(`id`, `nombre`) VALUES ('4','Produccion');                                            
